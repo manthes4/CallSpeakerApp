@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_battery_cpu"
+        android:icon="@drawable/ic_battery"
+        android:title="Battery &amp; CPU Stats" />
+    <item
+        android:id="@+id/nav_speaker_mode"
+        android:icon="@drawable/ic_speaker"
+        android:title="Speaker Mode" />
+</menu>

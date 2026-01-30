@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Use an AppCompat theme instead of a Material theme -->
+    <style name="Theme.CallSpeakerApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <!-- Toolbar color -->
+        <item name="colorPrimary">#5F45AE</item> <!-- Orange color -->
+        <item name="colorPrimaryDark">#76359E</item> <!-- Darker shade of orange -->
+        <item name="colorAccent">#6048A6</item> <!-- Orange accent color -->
+
+        <!-- Set the window background color -->
+        <item name="android:windowBackground">#9203A9F4</item>
+    </style>
+
+</resources>
