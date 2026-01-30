@@ -104,17 +104,25 @@ class CallSpeakerService : Service() {
             super.onCallStateChanged(state, phoneNumber)
             when (state) {
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    Log.d("CallStateListener", "Call is active. Activating speakerphone.")
-                    audioManager.isSpeakerphoneOn = true
-                    audioManager.setStreamVolume(
-                        AudioManager.STREAM_VOICE_CALL,
-                        audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL),
-                        AudioManager.FLAG_SHOW_UI
-                    )
+                    Log.d("CallStateListener", "Call answered. Waiting before activating speaker...")
+
+                    // Χρήση Handler για καθυστέρηση (π.χ. 5 δευτερόλεπτα ~= 3 χτυπήματα)
+                    android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                        Log.d("CallStateListener", "Activating speakerphone now.")
+                        audioManager.isSpeakerphoneOn = true
+                        audioManager.mode = AudioManager.MODE_IN_CALL // Σημαντικό για να δουλέψει σε πολλές συσκευές
+
+                        audioManager.setStreamVolume(
+                            AudioManager.STREAM_VOICE_CALL,
+                            audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL),
+                            AudioManager.FLAG_SHOW_UI
+                        )
+                    }, 5000) // 5000 milliseconds = 5 δευτερόλεπτα
                 }
                 TelephonyManager.CALL_STATE_IDLE -> {
                     Log.d("CallStateListener", "Call ended. Deactivating speakerphone.")
                     audioManager.isSpeakerphoneOn = false
+                    audioManager.mode = AudioManager.MODE_NORMAL
                 }
             }
         }
